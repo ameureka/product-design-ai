@@ -1,6 +1,6 @@
 # 产品设计智能体 (Product Design AI)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/product-design-ai)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ameureka/product-design-ai)
 
 <div align="center">
   <img src="public/logo.png" alt="产品设计智能体Logo" width="120" />
@@ -40,7 +40,7 @@
 
 1. 克隆仓库
 ```bash
-git clone https://github.com/yourusername/product-design-ai.git
+git clone https://github.com/ameureka/product-design-ai.git
 cd product-design-ai
 ```
 
@@ -132,7 +132,7 @@ product-design-ai/
 
 点击下方按钮，可以一键将项目部署到Vercel平台：
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/product-design-ai)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ameureka/product-design-ai)
 
 ## 📝 许可证
 
