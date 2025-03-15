@@ -41,7 +41,7 @@ export default function RootLayout({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Logo和介绍 */}
               <div className="md:col-span-1">
-                <Link href="/" className="flex items-center gap-2 mb-4">
+                <Link href="/design-research" className="flex items-center gap-2 mb-4">
                   <Logo size={30} variant="dark" />
                   <span className="text-sm font-medium text-gray-700">产品设计智能体</span>
                 </Link>
@@ -87,19 +87,19 @@ export default function RootLayout({
                 </h3>
                 <ul className="space-y-3">
                   <li>
-                    <a href="/documentation" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                    <Link href="/design-research" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
                       使用文档
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/guides" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                    <Link href="/design-research" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
                       设计指南
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/blog" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                      博客
-                    </a>
+                    <Link href="/debug" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                      调试工具
+                    </Link>
                   </li>
                 </ul>
               </div>
