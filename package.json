@@ -15,6 +15,7 @@
     "langchain": "^0.3.19",
     "next": "15.2.2",
     "next-auth": "^4.24.11",
+    "node-fetch": "^3.3.2",
     "openai": "^4.87.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

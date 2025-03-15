@@ -66,10 +66,10 @@ export default function ResearchForm({ onResearchComplete }: ResearchFormProps) 
   };
 
   const exampleTopics = [
-    "可持续城市设计与未来社区规划",
-    "用户体验设计在智能家居中的应用",
-    "数字艺术与传统艺术的融合创新",
-    "零废弃包装设计趋势研究"
+    "自主巡航配送机器人设计",
+    "家用服务机器人设计",
+    "中医人工智能脉诊仪设计",
+    "便携式蓝牙耳机设计"
   ];
 
   const handleExampleClick = (example: string) => {
@@ -99,7 +99,7 @@ export default function ResearchForm({ onResearchComplete }: ResearchFormProps) 
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="例如：可持续设计在公共空间中的应用"
+            placeholder="冰淇淋k歌麦克风"
             disabled={isLoading}
           />
         </div>

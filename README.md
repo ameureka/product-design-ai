@@ -1,146 +1,116 @@
-# 产品设计智能体 (Product Design AI)
+# DeepResearch AI
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ameureka/product-design-ai)
+基于Dify.ai工作流技术的深度设计研究工具，为设计师和研究人员提供快速、详细的研究报告生成能力。
 
-<div align="center">
-  <img src="public/logo.png" alt="产品设计智能体Logo" width="120" />
-  <h3>AI驱动的产品设计平台</h3>
-  <p>帮助设计师实现创意并提升效率的一站式智能设计工具</p>
-</div>
+## 功能特点
 
-## 📋 项目概述
+- 通过简单输入生成深入的设计研究报告
+- 支持多种设计主题和研究方向
+- 可将研究结果下载为Word或TXT文档
+- 提供流式和阻塞两种生成模式
+- 内置调试模式，便于开发和测试
 
-产品设计智能体是一个基于AI技术的设计辅助平台，旨在帮助设计师和产品团队快速进行设计主题研究、概念图生成、效果处理和输出。该平台集成了多种设计工具和AI算法，为用户提供从创意发想到设计输出的全流程支持。
+## 快速开始
 
-### ✨ 核心功能
+### 安装
 
-- **设计主题研究**：快速生成设计主题分析和相关参考资料
-- **概念图生成**：基于文本描述自动生成产品概念图
-- **平面效果处理**：多种平面视觉效果处理工具
-- **3D效果转换**：将2D图像转换为多种3D效果视图
-- **风格转换**：应用不同艺术风格到设计图像中
-- **板式输出**：生成专业的排版设计和板式输出
-- **演示动画**：快速创建设计演示动画
-
-## 🚀 技术栈
-
-- **前端框架**：Next.js 15
-- **样式解决方案**：Tailwind CSS
-- **字体**：Geist Sans & Geist Mono
-- **部署平台**：Vercel
-
-## 🛠️ 安装与运行
-
-### 前提条件
-
-- Node.js 18.x 或更高版本
-- npm 或 yarn 包管理器
-
-### 安装步骤
-
-1. 克隆仓库
 ```bash
-git clone https://github.com/ameureka/product-design-ai.git
-cd product-design-ai
-```
+# 克隆项目
+git clone https://github.com/yourusername/deepresearch-ai.git
+cd deepresearch-ai
 
-2. 安装依赖
-```bash
+# 安装依赖
 npm install
-# 或
-yarn install
-```
 
-3. 运行开发服务器
-```bash
+# 启动开发服务器
 npm run dev
-# 或
-yarn dev
 ```
 
-4. 构建生产版本
+然后在浏览器中访问 http://localhost:3000/design-research 开始使用。
+
+### 环境变量
+
+创建一个`.env.local`文件并设置以下环境变量:
+
+```
+DIFY_API_KEY_001_workflow=your_dify_api_key_here
+```
+
+## 使用方法
+
+### 设计研究页面
+
+1. 访问 `/design-research` 页面
+2. 输入研究标题、研究主题和需求描述，或选择预设配置
+3. 点击"开始处理"按钮启动研究生成流程
+4. 等待系统生成研究报告
+5. 查看研究报告，并根据需要下载为Word或文本文档
+
+### 调试模式
+
+要启用调试模式，可以点击页面顶部的"开启调试模式"按钮，或直接在URL中添加`?debug=true`参数。
+
+调试模式下，页面将显示:
+- API请求和响应详情
+- 处理时间和延迟
+- 流式生成的详细日志
+- 错误信息和状态码
+
+## 命令行测试工具
+
+项目包含一个命令行测试工具，可以快速测试Dify API:
+
 ```bash
-npm run build
-# 或
-yarn build
+# 使用默认测试用例1
+node test-dify-workflow.js
+
+# 使用默认测试用例2
+node test-dify-workflow.js 2
+
+# 使用自定义参数
+node test-dify-workflow.js title="自定义标题" topic="自定义主题" requirements="自定义需求"
 ```
 
-## 🔍 项目结构
+## 技术架构
+
+- **前端框架**: Next.js + React
+- **UI组件**: 自定义组件 + TailwindCSS
+- **API集成**: Dify.ai工作流 API
+- **文档生成**: docx + file-saver
+
+## 项目结构
 
 ```
-product-design-ai/
-├── app/                    # Next.js 应用目录
-│   ├── components/         # 共享组件
-│   │   ├── Icons.tsx       # 图标组件
-│   │   ├── ImageProcessor.tsx # 图像处理组件
-│   │   ├── Logo.tsx        # Logo组件 
-│   │   ├── NavigationBar.tsx # 导航栏组件
-│   │   └── SocialIcons.tsx # 社交媒体图标组件
-│   ├── 3d-effect/          # 3D效果页面
-│   ├── concept-image/      # 概念图生成页面
-│   ├── design-research/    # 设计主题研究页面
-│   ├── flat-effect/        # 平面效果页面
-│   ├── layout-output/      # 板式输出页面
-│   ├── style-transfer/     # 风格转换页面
-│   ├── demo-animation/     # 演示动画页面
-│   ├── globals.css         # 全局样式
-│   ├── layout.tsx          # 根布局组件
-│   ├── metadata.tsx        # 网站元数据
-│   └── page.tsx            # 主页
-├── public/                 # 静态资源
-│   └── logo.png            # 网站logo
-├── .eslintrc.json          # ESLint配置
-├── .gitignore              # Git忽略文件
-├── next.config.js          # Next.js配置
-├── package.json            # 项目依赖
-├── postcss.config.js       # PostCSS配置
-├── tailwind.config.js      # Tailwind配置
-└── tsconfig.json           # TypeScript配置
+deepresearch-ai/
+├── app/
+│   ├── api/
+│   │   └── dify/          # Dify API代理
+│   ├── components/        # 共享组件
+│   ├── design-research/   # 设计研究页面
+│   └── utils/             # 工具函数
+├── public/                # 静态资源
+├── test-dify-workflow.js  # API测试脚本
+└── README.md              # 项目文档
 ```
 
-## 📱 功能展示
+## 开发指南
 
-### 设计主题研究
-输入设计主题关键词，AI将生成相关的设计研究报告，包括市场趋势、色彩分析、形态研究等。
+### API调试
 
-### 概念图生成
-基于文本描述自动生成产品概念图，支持多种风格和形态。
+当启用调试模式时，所有API请求和响应都会在控制台和页面上显示详细信息。这有助于排查问题或了解工作流的执行过程。
 
-### 平面效果
-提供多种平面视觉效果处理选项，如滤镜、纹理、叠加等。
+### 修改生成的文档格式
 
-### 3D效果
-将平面图像转换为立体浮雕、等距3D、透视3D等多种3D效果。
+如需修改Word文档的生成逻辑，请编辑`app/utils/documentUtils.ts`文件。该文件定义了如何将纯文本转换为结构化的Word文档。
 
-### 风格转换
-应用油画、水彩、素描等多种艺术风格到设计图像中。
+## 贡献指南
 
-### 板式输出
-生成海报、杂志、社交媒体等多种专业排版设计。
+欢迎提交Pull Request或Issue来改进这个项目。在提交之前，请确保:
 
-### 演示动画
-快速生成设计演示动画，支持多种过渡效果和动画样式。
+1. 代码风格符合项目规范
+2. 所有测试通过
+3. 提供清晰的PR描述
 
-## 🔄 工作流程
+## 许可证
 
-1. **研究阶段**：使用设计主题研究工具收集灵感和设计方向
-2. **概念阶段**：使用概念图生成工具创建初步设计
-3. **设计阶段**：使用效果处理工具（平面效果、3D效果、风格转换）完善设计
-4. **输出阶段**：使用板式输出和演示动画工具展示最终设计
-
-## 🌐 一键部署
-
-点击下方按钮，可以一键将项目部署到Vercel平台：
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ameureka/product-design-ai)
-
-## 📝 许可证
-
-[MIT](LICENSE)
-
-## 👥 联系我们
-
-- Twitter: [@productdesignai](https://twitter.com/productdesignai)
-- YouTube: [产品设计智能体](https://youtube.com/c/productdesignai)
-- 小红书: [产品设计智能体](https://xiaohongshu.com/user/productdesignai)
-- 邮箱: contact@productdesignai.com
+MIT

@@ -38,7 +38,7 @@ export default function RootLayout({
         <footer className="bg-white border-t border-gray-200">
           {/* 上部分 - 链接和Logo */}
           <div className="max-w-7xl mx-auto pt-10 pb-8 px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Logo和介绍 */}
               <div className="md:col-span-1">
                 <Link href="/" className="flex items-center gap-2 mb-4">
@@ -51,7 +51,7 @@ export default function RootLayout({
                 <SocialIcons />
               </div>
               
-              {/* 站点链接 */}
+              {/* 产品功能 */}
               <div className="md:col-span-1">
                 <h3 className="text-sm font-semibold text-gray-800 tracking-wider uppercase mb-4">
                   产品功能
@@ -59,17 +59,17 @@ export default function RootLayout({
                 <ul className="space-y-3">
                   <li>
                     <Link href="/design-research" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                      设计主题研究
+                      主题研究
                     </Link>
                   </li>
                   <li>
                     <Link href="/concept-image" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                      概念图生成
+                      概念推演
                     </Link>
                   </li>
                   <li>
                     <Link href="/3d-effect" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                      3D效果
+                      3d设计
                     </Link>
                   </li>
                   <li>
@@ -80,6 +80,7 @@ export default function RootLayout({
                 </ul>
               </div>
               
+              {/* 支持与博客 */}
               <div className="md:col-span-1">
                 <h3 className="text-sm font-semibold text-gray-800 tracking-wider uppercase mb-4">
                   支持
@@ -91,46 +92,13 @@ export default function RootLayout({
                     </a>
                   </li>
                   <li>
-                    <a href="/pricing" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                      价格方案
-                    </a>
-                  </li>
-                  <li>
                     <a href="/guides" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
                       设计指南
                     </a>
                   </li>
                   <li>
-                    <a href="/faq" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                      常见问题
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-              <div className="md:col-span-1">
-                <h3 className="text-sm font-semibold text-gray-800 tracking-wider uppercase mb-4">
-                  公司
-                </h3>
-                <ul className="space-y-3">
-                  <li>
-                    <a href="/about" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                      关于我们
-                    </a>
-                  </li>
-                  <li>
                     <a href="/blog" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
                       博客
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/jobs" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                      招聘信息
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/contact" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                      联系我们
                     </a>
                   </li>
                 </ul>
@@ -144,17 +112,6 @@ export default function RootLayout({
               <p className="text-xs text-gray-500">
                 © {new Date().getFullYear()} 产品设计智能体 - 由 Next.js 提供支持，可在 Vercel 上部署
               </p>
-              <div className="mt-3 sm:mt-0 flex space-x-6">
-                <a href="/terms" className="text-xs text-gray-500 hover:text-blue-600 transition-colors">
-                  服务条款
-                </a>
-                <a href="/privacy" className="text-xs text-gray-500 hover:text-blue-600 transition-colors">
-                  隐私政策
-                </a>
-                <a href="/cookies" className="text-xs text-gray-500 hover:text-blue-600 transition-colors">
-                  Cookie 政策
-                </a>
-              </div>
             </div>
           </div>
         </footer>
