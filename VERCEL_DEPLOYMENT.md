@@ -18,6 +18,8 @@
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fameureka%2Fproduct-design-ai&env=OPENAI_API_KEY,DIFY_API_KEY_001_workflow,DIFY_API_KEY_API,DIFY_API_KEY_CHAT,NEXTAUTH_SECRET&envDescription=请填写所需的API密钥&envLink=https://github.com/ameureka/product-design-ai/blob/main/VERCEL_DEPLOYMENT.md&project-name=deep-research-ai&repository-name=deep-research-ai)
 
+部署时，您需要在Vercel界面上直接输入各API密钥的值。
+
 ### 方法二：手动部署步骤
 
 1. 登录您的 Vercel 账户
@@ -36,6 +38,8 @@
 | DIFY_API_KEY_CHAT | Dify 聊天 API 密钥 | app-... |
 | NEXTAUTH_SECRET | NextAuth 安全密钥 | 一个随机字符串 |
 
+**重要提示**: 在环境变量输入框中直接输入完整的API密钥值，不需要添加任何前缀或引号。
+
 8. 点击 "Deploy" 按钮
 
 ## 验证部署
@@ -53,7 +57,7 @@
 如果您遇到与 API 密钥相关的问题，请检查:
 
 1. 确保您已正确设置所有环境变量
-2. 密钥格式正确无误
+2. 密钥格式正确无误（直接复制粘贴完整密钥，不要添加额外字符）
 3. 在 Vercel 项目设置中检查环境变量是否已正确应用
 
 ### 部署失败
