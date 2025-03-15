@@ -12,7 +12,15 @@
 
 ## 快速开始
 
-### 安装
+### 方法一：一键部署到Vercel（推荐）
+
+点击下面的按钮，将自动引导您完成部署流程：
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fameureka%2Fproduct-design-ai&env=OPENAI_API_KEY,DIFY_API_KEY_001_workflow,DIFY_API_KEY_API,DIFY_API_KEY_CHAT,NEXTAUTH_SECRET&envDescription=请填写所需的API密钥&envLink=https://github.com/ameureka/product-design-ai/blob/main/VERCEL_DEPLOYMENT.md&project-name=deep-research-ai&repository-name=deep-research-ai)
+
+详细的部署指南请查看 [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md)
+
+### 方法二：本地安装
 
 ```bash
 # 克隆项目
@@ -33,7 +41,17 @@ npm run dev
 创建一个`.env.local`文件并设置以下环境变量:
 
 ```
-DIFY_API_KEY_001_workflow=your_dify_api_key_here
+# Dify.ai API密钥 - 必填
+DIFY_API_KEY_001_workflow=your_dify_workflow_api_key_here
+DIFY_API_KEY_API=your_dify_api_key_here
+DIFY_API_KEY_CHAT=your_dify_chat_api_key_here
+
+# OpenAI API密钥 - 必填
+OPENAI_API_KEY=your_openai_api_key_here
+
+# NextAuth配置 - 必填
+NEXTAUTH_SECRET=random_secret_key
+NEXTAUTH_URL=http://localhost:3000
 ```
 
 ## 使用方法

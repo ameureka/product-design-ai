@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["sin1"],
+  "github": {
+    "silent": true
+  },
+  "env": {
+    "OPENAI_API_KEY": "@openai_api_key",
+    "DIFY_API_KEY_001_workflow": "@dify_api_key_001_workflow",
+    "DIFY_API_KEY_API": "@dify_api_key_api",
+    "DIFY_API_KEY_CHAT": "@dify_api_key_chat",
+    "NEXTAUTH_SECRET": "@nextauth_secret",
+    "NEXT_PUBLIC_APP_URL": "${VERCEL_URL}"
+  }
+} 
