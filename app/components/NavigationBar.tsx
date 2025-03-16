@@ -9,7 +9,6 @@ export default function NavigationBar() {
   const router = useRouter();
   
   const navItems = [
-    { path: '/design-research', label: '首页' },
     { path: '/design-research', label: '主题研究' },
     { path: '/concept-image', label: '概念推演' },
     { path: '/flat-effect', label: '二维设计' },
@@ -17,6 +16,7 @@ export default function NavigationBar() {
     { path: '/style-transfer', label: '风格转换' },
     { path: '/layout-output', label: '设计输出' },
     { path: '/demo-animation', label: '后期宣传' },
+    { path: '/debug', label: '调试工具' },
   ];
 
   // 增加直接导航函数，避免链接依赖配置的重定向
@@ -41,7 +41,7 @@ export default function NavigationBar() {
             <div className="ml-6 flex space-x-4">
               {navItems.map((item) => (
                 <div
-                  key={item.path}
+                  key={item.path + item.label}
                   onClick={() => handleNavigation(item.path)}
                   className={`inline-flex items-center px-3 py-2 rounded-md transition-colors duration-200 cursor-pointer
                     ${pathname === item.path 
