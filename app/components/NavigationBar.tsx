@@ -9,7 +9,8 @@ export default function NavigationBar() {
   const router = useRouter();
   
   const navItems = [
-    { path: '/design-research', label: '主题研究' },
+    { path: '/design-research', label: '首页', isHome: true },
+    { path: '/design-research', label: '主题研究', isHome: false },
     { path: '/concept-image', label: '概念推演' },
     { path: '/flat-effect', label: '二维设计' },
     { path: '/3d-effect', label: '3d设计' },
@@ -22,6 +23,16 @@ export default function NavigationBar() {
   // 增加直接导航函数，避免链接依赖配置的重定向
   const handleNavigation = (path: string) => {
     router.push(path);
+  };
+
+  // 判断高亮逻辑：针对首页和主题研究特殊处理
+  const isActiveLink = (item: any) => {
+    if (pathname === '/design-research') {
+      // 如果当前在设计研究页面，根据isHome属性决定高亮哪个
+      return item.isHome === true ? true : false;
+    }
+    // 其他页面正常判断
+    return pathname === item.path;
   };
 
   return (
@@ -44,7 +55,7 @@ export default function NavigationBar() {
                   key={item.path + item.label}
                   onClick={() => handleNavigation(item.path)}
                   className={`inline-flex items-center px-3 py-2 rounded-md transition-colors duration-200 cursor-pointer
-                    ${pathname === item.path 
+                    ${isActiveLink(item) 
                       ? 'text-red-500 font-semibold' 
                       : 'text-gray-700 hover:text-red-500'}`}
                 >
