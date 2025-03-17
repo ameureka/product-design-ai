@@ -484,6 +484,43 @@ export default function DifyWorkflowProcessor({
     logDebug('debug_toggled', !debugMode);
   };
 
+  const processInlineMarkdown = (text: string): React.ReactNode => {
+    // 如果文本中没有特殊标记，直接返回
+    if (!text.includes('**') && !text.includes('*') && !text.includes('`')) {
+      return text;
+    }
+
+    // 处理文本中的加粗、斜体和代码样式
+    const parts: React.ReactNode[] = [];
+    let currentText = text;
+    let key = 0;
+
+    // 处理加粗文本 (** **)
+    const boldRegex = /\*\*(.*?)\*\*/g;
+    let boldMatch;
+    let lastIndex = 0;
+
+    while ((boldMatch = boldRegex.exec(currentText)) !== null) {
+      // 添加前面的普通文本
+      if (boldMatch.index > lastIndex) {
+        const plainText = currentText.substring(lastIndex, boldMatch.index);
+        parts.push(<span key={key++}>{processInlineMarkdown(plainText)}</span>);
+      }
+
+      // 添加加粗的文本
+      parts.push(<strong key={key++}>{boldMatch[1]}</strong>);
+      lastIndex = boldMatch.index + boldMatch[0].length;
+    }
+
+    // 添加剩余的文本
+    if (lastIndex < currentText.length) {
+      const plainText = currentText.substring(lastIndex);
+      parts.push(<span key={key++}>{plainText}</span>);
+    }
+
+    return parts.length > 0 ? parts : text;
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center">{title}</h2>
@@ -625,19 +662,34 @@ export default function DifyWorkflowProcessor({
             <div className="prose prose-sm max-w-none">
               <div className="formatted-result">
                 {streamingText.split('\n').map((line: string, index: number) => {
-                  // 添加适当的格式
-                  if (line.startsWith('# ')) {
-                    return <h1 key={index} className="text-xl font-bold mt-4 mb-2">{line.substring(2)}</h1>;
-                  } else if (line.startsWith('## ')) {
-                    return <h2 key={index} className="text-lg font-bold mt-3 mb-2">{line.substring(3)}</h2>;
-                  } else if (line.startsWith('### ')) {
-                    return <h3 key={index} className="text-md font-bold mt-3 mb-1">{line.substring(4)}</h3>;
-                  } else if (line.startsWith('- ') || line.startsWith('* ')) {
-                    return <li key={index} className="ml-4 mb-1">{line.substring(2)}</li>;
-                  } else if (line.trim() === '') {
+                  // 处理标题 - 增强型匹配，处理多种格式的标题
+                  if (line.match(/^#+\s+.+/)) {
+                    const level = line.match(/^(#+)/)?.[0].length || 1;
+                    const content = line.replace(/^#+\s+/, '');
+                    
+                    switch(level) {
+                      case 1: return <h1 key={index} className="text-2xl font-bold mt-6 mb-3">{content}</h1>;
+                      case 2: return <h2 key={index} className="text-xl font-bold mt-5 mb-2">{content}</h2>;
+                      case 3: return <h3 key={index} className="text-lg font-bold mt-4 mb-2">{content}</h3>;
+                      case 4: return <h4 key={index} className="text-base font-bold mt-3 mb-1">{content}</h4>;
+                      default: return <h5 key={index} className="text-sm font-bold mt-2 mb-1">{content}</h5>;
+                    }
+                  } 
+                  // 处理无序列表
+                  else if (line.match(/^[\-\*]\s+.+/)) {
+                    return <li key={index} className="ml-4 mb-1">{processInlineMarkdown(line.replace(/^[\-\*]\s+/, ''))}</li>;
+                  } 
+                  // 处理有序列表
+                  else if (line.match(/^\d+\.\s+.+/)) {
+                    return <li key={index} className="ml-4 list-decimal mb-1">{processInlineMarkdown(line.replace(/^\d+\.\s+/, ''))}</li>;
+                  } 
+                  // 空行
+                  else if (line.trim() === '') {
                     return <br key={index} />;
-                  } else {
-                    return <p key={index} className="mb-2">{line}</p>;
+                  } 
+                  // 普通段落
+                  else {
+                    return <p key={index} className="mb-2">{processInlineMarkdown(line)}</p>;
                   }
                 })}
               </div>
@@ -672,19 +724,34 @@ export default function DifyWorkflowProcessor({
               {result.answer && result.answer.trim() ? (
                 <div className="formatted-result">
                   {result.answer.split('\n').map((line: string, index: number) => {
-                    // 添加适当的格式
-                    if (line.startsWith('# ')) {
-                      return <h1 key={index} className="text-xl font-bold mt-4 mb-2">{line.substring(2)}</h1>;
-                    } else if (line.startsWith('## ')) {
-                      return <h2 key={index} className="text-lg font-bold mt-3 mb-2">{line.substring(3)}</h2>;
-                    } else if (line.startsWith('### ')) {
-                      return <h3 key={index} className="text-md font-bold mt-3 mb-1">{line.substring(4)}</h3>;
-                    } else if (line.startsWith('- ') || line.startsWith('* ')) {
-                      return <li key={index} className="ml-4 mb-1">{line.substring(2)}</li>;
-                    } else if (line.trim() === '') {
+                    // 处理标题 - 增强型匹配，处理多种格式的标题
+                    if (line.match(/^#+\s+.+/)) {
+                      const level = line.match(/^(#+)/)?.[0].length || 1;
+                      const content = line.replace(/^#+\s+/, '');
+                      
+                      switch(level) {
+                        case 1: return <h1 key={index} className="text-2xl font-bold mt-6 mb-3">{content}</h1>;
+                        case 2: return <h2 key={index} className="text-xl font-bold mt-5 mb-2">{content}</h2>;
+                        case 3: return <h3 key={index} className="text-lg font-bold mt-4 mb-2">{content}</h3>;
+                        case 4: return <h4 key={index} className="text-base font-bold mt-3 mb-1">{content}</h4>;
+                        default: return <h5 key={index} className="text-sm font-bold mt-2 mb-1">{content}</h5>;
+                      }
+                    } 
+                    // 处理无序列表
+                    else if (line.match(/^[\-\*]\s+.+/)) {
+                      return <li key={index} className="ml-4 mb-1">{processInlineMarkdown(line.replace(/^[\-\*]\s+/, ''))}</li>;
+                    } 
+                    // 处理有序列表
+                    else if (line.match(/^\d+\.\s+.+/)) {
+                      return <li key={index} className="ml-4 list-decimal mb-1">{processInlineMarkdown(line.replace(/^\d+\.\s+/, ''))}</li>;
+                    } 
+                    // 空行
+                    else if (line.trim() === '') {
                       return <br key={index} />;
-                    } else {
-                      return <p key={index} className="mb-2">{line}</p>;
+                    } 
+                    // 普通段落
+                    else {
+                      return <p key={index} className="mb-2">{processInlineMarkdown(line)}</p>;
                     }
                   })}
                 </div>
